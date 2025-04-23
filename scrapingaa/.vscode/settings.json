@@ -1,0 +1,50 @@
+{
+  "todo-tree.general.tags": [
+    "BUG", // Баг нужно исправить
+    "FIXME", // Исправить код
+    "TODO", // Необходимо сделать
+    "TEST", // Нуждается в тестах
+    "NOTE", // Замечание/Записка
+    "RENAME", // Требует переименования в более подходящее имя
+    "REMOVE" // Требует удаления на стадии релиза
+  ],
+  "todo-tree.highlights.backgroundColourScheme": [
+    "red",
+    "violet",
+    "green",
+    "#008000",
+    "#fbaa15",
+    "purple",
+    "gray"
+  ],
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    ".godot/": true,
+    "data_*_*": true,
+    "**/*.exe": true,
+    "cookies.json": true,
+    "export/": true,
+    "**/*.7z": true,
+    "**/*.uid": true
+  },
+  "todo-tree.tree.flat": true,
+  "todo-tree.tree.filterCaseSensitive": false,
+  "todo-tree.tree.expanded": false,
+  "todo-tree.tree.disableCompactFolders": false,
+  "todo-tree.tree.sortTagsOnlyViewAlphabetically": false,
+  "todo-tree.tree.tagsOnly": false,
+  "todo-tree.tree.trackFile": true,
+  "todo-tree.tree.buttons.groupBySubTag": false,
+  "todo-tree.tree.buttons.scanMode": false,
+  "todo-tree.regex.enableMultiLine": false,
+  "todo-tree.filtering.ignoreGitSubmodules": false,
+  "todo-tree.highlights.useColourScheme": true,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": false,
+  "csharp.format.enable": true,
+  "git.ignoreLimitWarning": true
+}

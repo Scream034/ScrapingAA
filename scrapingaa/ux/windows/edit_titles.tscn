@@ -1,0 +1,149 @@
+[gd_scene load_steps=9 format=3 uid="uid://bknxmtl4xxr6n"]
+
+[ext_resource type="Script" uid="uid://6soro41amxhx" path="res://ux/scripts/OptionPanel/Windows/EditTitlesWindow.cs" id="1_yu5vn"]
+[ext_resource type="Script" uid="uid://da2sg4grgfv6r" path="res://ux/scripts/OptionPanel/Windows/EditTitlesHandler.cs" id="2_716g1"]
+[ext_resource type="Script" uid="uid://bbehbbmgbaxum" path="res://core/UI/Utils/DragControl.cs" id="2_yu5vn"]
+[ext_resource type="Script" uid="uid://dw5f6auuopa76" path="res://core/UI/Panel/AlternativePanel.cs" id="4_716g1"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_716g1"]
+device = -1
+keycode = 4194319
+
+[sub_resource type="Shortcut" id="Shortcut_s3n7o"]
+events = [SubResource("InputEventKey_716g1")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_yu5vn"]
+device = -1
+keycode = 4194321
+
+[sub_resource type="Shortcut" id="Shortcut_716g1"]
+events = [SubResource("InputEventKey_yu5vn")]
+
+[node name="EditTitles" type="Window" node_paths=PackedStringArray("Handler", "CloseButton")]
+disable_3d = true
+initial_position = 1
+size = Vector2i(700, 250)
+borderless = true
+script = ExtResource("1_yu5vn")
+Handler = NodePath("Control")
+CloseButton = NodePath("Control/Layout/Header/Close")
+metadata/_custom_type_script = "uid://cbgme0jwq4tjo"
+
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("LineEdit", "HBoxButtons", "PreviousButton", "NextButton", "ApplyButton", "Label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_716g1")
+LineEdit = NodePath("Layout/Content/LineEdit")
+HBoxButtons = NodePath("Layout/Footer/HBoxContainer/ScrollContainer/Buttons")
+PreviousButton = NodePath("Layout/Footer/HBoxContainer/Previous")
+NextButton = NodePath("Layout/Footer/HBoxContainer/Next")
+ApplyButton = NodePath("Layout/Header/Apply")
+Label = NodePath("Layout/Content/Label")
+
+[node name="Background" type="Panel" parent="Control"]
+process_mode = 4
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Layout" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Header" type="HBoxContainer" parent="Control/Layout" node_paths=PackedStringArray("Target")]
+process_priority = 2
+process_physics_priority = 2
+layout_mode = 2
+mouse_default_cursor_shape = 13
+theme_override_constants/separation = 0
+script = ExtResource("2_yu5vn")
+Target = NodePath("../../..")
+
+[node name="Background" type="Panel" parent="Control/Layout/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+mouse_default_cursor_shape = 13
+script = ExtResource("4_716g1")
+metadata/_custom_type_script = "uid://dw5f6auuopa76"
+
+[node name="Close" type="Button" parent="Control/Layout/Header"]
+layout_mode = 2
+tooltip_text = "Закрыть окно не примения"
+text = "❌"
+
+[node name="Apply" type="Button" parent="Control/Layout/Header"]
+layout_mode = 2
+tooltip_text = "Закрыть окно и применить"
+text = "✔️"
+
+[node name="Content" type="VBoxContainer" parent="Control/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="LineEdit" type="LineEdit" parent="Control/Layout/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+placeholder_text = "Редактируемое Название"
+alignment = 1
+flat = true
+
+[node name="Label" type="Label" parent="Control/Layout/Content"]
+layout_mode = 2
+text = "Выбран: -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Footer" type="VBoxContainer" parent="Control/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+theme_override_constants/separation = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Layout/Footer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Previous" type="Button" parent="Control/Layout/Footer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+tooltip_text = "Перейти на предыдущие название"
+shortcut = SubResource("Shortcut_s3n7o")
+text = "⏪"
+flat = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/Layout/Footer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Buttons" type="HBoxContainer" parent="Control/Layout/Footer/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Next" type="Button" parent="Control/Layout/Footer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+tooltip_text = "Перейти на следующие название"
+shortcut = SubResource("Shortcut_716g1")
+text = "⏩"
+flat = true

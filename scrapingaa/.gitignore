@@ -1,0 +1,12 @@
+*.scn
+*.depren
+*.bin
+.qodo
+user
+.godot
+data_*_*
+*.exe
+cookies.json
+export/user
+export/user1
+*.7z

@@ -1,0 +1,97 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8tsjio0qg7dr"]
+
+[ext_resource type="Script" uid="uid://bg8da7dv8qi5a" path="res://core/UI/Window/InputWindow.cs" id="1_umydl"]
+[ext_resource type="Script" uid="uid://bbehbbmgbaxum" path="res://core/UI/Utils/DragControl.cs" id="2_nwgu3"]
+
+[node name="InputWindow" type="Window" node_paths=PackedStringArray("LineEdit", "Label", "SubmitButton", "CancelButton", "CloseButton")]
+disable_3d = true
+title = "Введите текст"
+initial_position = 1
+size = Vector2i(275, 150)
+borderless = true
+script = ExtResource("1_umydl")
+LineEdit = NodePath("VBoxContainer/LineEdit")
+Label = NodePath("VBoxContainer/Label")
+SubmitButton = NodePath("VBoxContainer/HBoxContainer/Submit")
+CancelButton = NodePath("VBoxContainer/HBoxContainer/Cancel")
+CloseButton = NodePath("VBoxContainer/Header/CloseButton")
+metadata/_custom_type_script = "uid://cbgme0jwq4tjo"
+
+[node name="Panel" type="Panel" parent="."]
+process_mode = 4
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Header" type="HBoxContainer" parent="VBoxContainer" node_paths=PackedStringArray("Target")]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+alignment = 2
+script = ExtResource("2_nwgu3")
+Target = NodePath("../..")
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Header"]
+process_mode = 4
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.114897, 0.114897, 0.114897, 1)
+
+[node name="CloseButton" type="Button" parent="VBoxContainer/Header"]
+layout_mode = 2
+tooltip_text = "Закрыть окно"
+text = "❌"
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(180, 30)
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "Введите сюда текст"
+placeholder_text = "Ввод"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Submit" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Отправить/Применить"
+theme_override_constants/outline_size = 0
+theme_override_constants/h_separation = 0
+theme_override_constants/icon_max_width = 0
+theme_override_constants/align_to_largest_stylebox = 0
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 9
+text = "✔️"
+
+[node name="Cancel" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Отменить"
+theme_override_constants/outline_size = 0
+theme_override_constants/h_separation = 0
+theme_override_constants/icon_max_width = 0
+theme_override_constants/align_to_largest_stylebox = 0
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 9
+text = "❌"

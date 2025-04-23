@@ -1,0 +1,48 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "${config:godot-dotnet-tools.executablePath}",
+      "args": [
+        "--path",
+        "${workspaceRoot}"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    },
+    {
+      "name": "Build and Launch",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "${config:godot-dotnet-tools.executablePath}",
+      "preLaunchTask": "build",
+      "args": [
+        "--path",
+        "${workspaceRoot}"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    },
+    {
+      "name": "[TEST] Build and Launch",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "${config:godot-dotnet-tools.executablePath}",
+      "preLaunchTask": "build",
+      "args": [
+        "--path",
+        "${workspaceRoot}",
+        "core/resources/Test/test.scn",
+        "--headless"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    }
+  ]
+}

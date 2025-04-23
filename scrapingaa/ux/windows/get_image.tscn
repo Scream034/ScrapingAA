@@ -1,0 +1,122 @@
+[gd_scene load_steps=9 format=3 uid="uid://dgjugd66xv4x8"]
+
+[ext_resource type="Script" uid="uid://xpcjsf08iqlm" path="res://ux/scripts/OptionPanel/Windows/GetImageWindow.cs" id="1_4okts"]
+[ext_resource type="Script" uid="uid://chbjqur43imee" path="res://ux/scripts/OptionPanel/Windows/GetImageHandler.cs" id="2_6n71u"]
+[ext_resource type="Script" uid="uid://bbehbbmgbaxum" path="res://core/UI/Utils/DragControl.cs" id="3_wtj04"]
+[ext_resource type="Script" uid="uid://dw5f6auuopa76" path="res://core/UI/Panel/AlternativePanel.cs" id="4_4okts"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_4okts"]
+device = -1
+ctrl_pressed = true
+keycode = 86
+
+[sub_resource type="Shortcut" id="Shortcut_vwevk"]
+events = [SubResource("InputEventKey_4okts")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_l2np8"]
+device = -1
+ctrl_pressed = true
+keycode = 90
+
+[sub_resource type="Shortcut" id="Shortcut_bbnpo"]
+events = [SubResource("InputEventKey_l2np8")]
+
+[node name="GetImage" type="Window" node_paths=PackedStringArray("Handler", "CloseButton")]
+disable_3d = true
+initial_position = 1
+size = Vector2i(800, 600)
+borderless = true
+sharp_corners = true
+script = ExtResource("1_4okts")
+Handler = NodePath("Control")
+CloseButton = NodePath("Control/Layout/Header/CloseButton")
+metadata/_custom_type_script = "uid://cbgme0jwq4tjo"
+
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("TextureRect", "LoadFileButton", "LoadFileFromClipboardButton", "ClearButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_6n71u")
+TextureRect = NodePath("Layout/Content/TextureRect")
+LoadFileButton = NodePath("Layout/Footer/Buttons/LoadImage")
+LoadFileFromClipboardButton = NodePath("Layout/Footer/Buttons/LoadImageFromClipboard")
+ClearButton = NodePath("Layout/Footer/Buttons/ClearImage")
+
+[node name="Background" type="Panel" parent="Control"]
+process_mode = 4
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Layout" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Header" type="HBoxContainer" parent="Control/Layout" node_paths=PackedStringArray("Target")]
+layout_mode = 2
+theme_override_constants/separation = 0
+script = ExtResource("3_wtj04")
+Target = NodePath("../../..")
+
+[node name="Background" type="Panel" parent="Control/Layout/Header"]
+process_mode = 4
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+script = ExtResource("4_4okts")
+metadata/_custom_type_script = "uid://dw5f6auuopa76"
+
+[node name="CloseButton" type="Button" parent="Control/Layout/Header"]
+layout_mode = 2
+text = "❌"
+
+[node name="Content" type="HBoxContainer" parent="Control/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="TextureRect" type="TextureRect" parent="Control/Layout/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Footer" type="VBoxContainer" parent="Control/Layout"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Buttons" type="HBoxContainer" parent="Control/Layout/Footer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LoadImage" type="Button" parent="Control/Layout/Footer/Buttons"]
+layout_mode = 2
+tooltip_text = "Добавить изображение"
+theme_override_font_sizes/font_size = 22
+text = "📂"
+
+[node name="LoadImageFromClipboard" type="Button" parent="Control/Layout/Footer/Buttons"]
+layout_mode = 2
+tooltip_text = "Загрузить из буфера обмена.
+Принимает: URL, Отдельное изображение."
+theme_override_font_sizes/font_size = 22
+shortcut = SubResource("Shortcut_vwevk")
+text = "📋"
+
+[node name="ClearImage" type="Button" parent="Control/Layout/Footer/Buttons"]
+layout_mode = 2
+tooltip_text = "Удалить изображение"
+theme_override_font_sizes/font_size = 22
+shortcut = SubResource("Shortcut_bbnpo")
+text = "🚫"

@@ -1,0 +1,142 @@
+[gd_scene load_steps=5 format=3 uid="uid://dg7jutjjfabyk"]
+
+[ext_resource type="Script" uid="uid://s424bwt6u5wm" path="res://ux/scripts/OptionPanel/Windows/PhotoCarouselHandler.cs" id="1_dnvsj"]
+[ext_resource type="Script" uid="uid://ctjvjgk1lh072" path="res://ux/scripts/OptionPanel/Windows/PhotoCarouselWindow.cs" id="1_svkik"]
+[ext_resource type="Script" uid="uid://bbehbbmgbaxum" path="res://core/UI/Utils/DragControl.cs" id="3_mqlam"]
+[ext_resource type="Script" uid="uid://dw5f6auuopa76" path="res://core/UI/Panel/AlternativePanel.cs" id="4_svkik"]
+
+[node name="PhotoCarousel" type="Window" node_paths=PackedStringArray("Handler", "CloseButton")]
+disable_3d = true
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+initial_position = 1
+size = Vector2i(832, 624)
+borderless = true
+script = ExtResource("1_svkik")
+Handler = NodePath("Control")
+CloseButton = NodePath("Control/Layout/Header/CloseButton")
+metadata/_custom_type_script = "uid://cbgme0jwq4tjo"
+
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("carouselContainer", "currentImage", "previousButton", "nextButton", "deleteButton", "openInExplorerButton", "findInBrowserButton", "addImageButton", "infoLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_dnvsj")
+carouselContainer = NodePath("Layout/Content")
+currentImage = NodePath("Layout/Content/TextureRect")
+previousButton = NodePath("Layout/Content/PreviousButton")
+nextButton = NodePath("Layout/Content/NextButton")
+deleteButton = NodePath("Layout/Footer/Buttons/Remove")
+openInExplorerButton = NodePath("Layout/Footer/Buttons/OpenInExporer")
+findInBrowserButton = NodePath("Layout/Footer/Buttons/FindInBrowser")
+addImageButton = NodePath("Layout/Footer/Buttons/LoadImage")
+infoLabel = NodePath("Layout/Footer/Info")
+
+[node name="Background" type="Panel" parent="Control"]
+process_mode = 4
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Layout" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="Header" type="HBoxContainer" parent="Control/Layout" node_paths=PackedStringArray("Target")]
+process_priority = 2
+process_physics_priority = 2
+clip_contents = true
+layout_mode = 2
+mouse_default_cursor_shape = 13
+theme_override_constants/separation = 0
+script = ExtResource("3_mqlam")
+Target = NodePath("../../..")
+
+[node name="Background" type="Panel" parent="Control/Layout/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+script = ExtResource("4_svkik")
+metadata/_custom_type_script = "uid://dw5f6auuopa76"
+
+[node name="CloseButton" type="Button" parent="Control/Layout/Header"]
+layout_mode = 2
+text = "❌"
+
+[node name="Content" type="HBoxContainer" parent="Control/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 0
+theme_override_constants/separation = 5
+
+[node name="PreviousButton" type="Button" parent="Control/Layout/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "⏪"
+
+[node name="TextureRect" type="TextureRect" parent="Control/Layout/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NextButton" type="Button" parent="Control/Layout/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "⏩"
+
+[node name="Footer" type="VBoxContainer" parent="Control/Layout"]
+layout_mode = 2
+mouse_filter = 0
+theme_override_constants/separation = 5
+
+[node name="Info" type="Label" parent="Control/Layout/Footer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="Buttons" type="HBoxContainer" parent="Control/Layout/Footer"]
+layout_mode = 2
+mouse_filter = 0
+alignment = 1
+
+[node name="LoadImage" type="Button" parent="Control/Layout/Footer/Buttons"]
+layout_mode = 2
+tooltip_text = "Добавить изображение"
+theme_override_font_sizes/font_size = 22
+text = "📥"
+
+[node name="Remove" type="Button" parent="Control/Layout/Footer/Buttons"]
+layout_mode = 2
+tooltip_text = "Удалить изображение"
+theme_override_font_sizes/font_size = 22
+text = "🚫"
+
+[node name="OpenInExporer" type="Button" parent="Control/Layout/Footer/Buttons"]
+layout_mode = 2
+tooltip_text = "Открыть выбранное изображение в проводнике"
+theme_override_font_sizes/font_size = 22
+text = "📂"
+
+[node name="FindInBrowser" type="Button" parent="Control/Layout/Footer/Buttons"]
+layout_mode = 2
+tooltip_text = "Открыть в браузере поиск изображения по названию продукта"
+theme_override_font_sizes/font_size = 22
+text = "🌐"

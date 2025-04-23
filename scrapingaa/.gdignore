@@ -1,0 +1,14 @@
+.godot/*
+.vscode/*
+.mono/*
+temp/*
+user/*
+har_and_cookies/*
+export/*
+*.exe
+*.dll
+*.pdb
+*.bak
+*.tmp
+*.json
+

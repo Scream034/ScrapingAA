@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://25hn8hg2yi64"]
+
+[ext_resource type="Script" uid="uid://r4jxlcxesmwu" path="res://core/UI/Window/ProgressWindow.cs" id="1_gk43a"]
+
+[node name="ProgressWindow" type="Window" node_paths=PackedStringArray("ProgressBar", "Label", "CancelButton", "CloseButton")]
+process_mode = 3
+process_priority = 16
+process_physics_priority = 16
+disable_3d = true
+title = "Прогресс"
+initial_position = 1
+size = Vector2i(300, 100)
+borderless = true
+sharp_corners = true
+script = ExtResource("1_gk43a")
+ProgressBar = NodePath("VBoxContainer/ProgressBar")
+Label = NodePath("VBoxContainer/Label")
+CancelButton = NodePath("VBoxContainer/HBoxContainer/Cancel")
+CloseButton = NodePath("VBoxContainer/HBoxContainer/Cancel")
+metadata/_custom_type_script = "uid://r4jxlcxesmwu"
+
+[node name="Panel" type="Panel" parent="."]
+process_mode = 4
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Осталось..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Cancel" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Отменить"
+text = "❌"
